@@ -1,0 +1,22 @@
+{
+  "name": "tineye-api",
+  "version": "0.1.0",
+  "description": "TinEye Commercial API node.js library",
+  "main": "lib/tineye-api-request.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TinEye/tineye_api_node.git"
+  },
+  "author": "TinEye <support@tineye.com> (http://tineye.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "form-data": "~1.0.0",
+    "request": "~2.58.0"
+  },
+  "devDependencies": {
+    "buster": "~0.7.18"
+  },
+}
