@@ -18,5 +18,5 @@
   },
   "devDependencies": {
     "buster": "~0.7.18"
-  },
+  }
 }
