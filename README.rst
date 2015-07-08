@@ -6,16 +6,16 @@ TinEye Commercial API Node.js library
 Installation
 ------------
 
-::
+.. code:: bash
 
-    npm install tineye-api
+    $ npm install tineye-api
 
 Using the library
 -----------------
 
 Once installed, require the library to start using it:
 
-::
+.. code:: javascript
 
     var tineye = require('tineye-api')
 
@@ -28,7 +28,7 @@ Once required, you are ready to start using it with node!
 Searching
 ---------
 
-::
+.. code-block:: javascript
 
     url = 'http://tineye.com/images/meloncat.jpg'
     api.search_url(url, 0, 10, 'score', 'desc', function(data) {
@@ -43,7 +43,7 @@ Searching
 Remaining Searches
 ------------------
 
-::
+.. code-block:: javascript
 
     api.remaining_searches(function(data) {
       console.log(data)
@@ -52,7 +52,7 @@ Remaining Searches
 Number of Indexed Images
 ------------------------
 
-::
+.. code-block:: javascript
 
     api.image_count(function(data) {
       console.log(data)
@@ -62,3 +62,4 @@ Release History
 ---------------
 
 * 0.1.0 Initial release
+
