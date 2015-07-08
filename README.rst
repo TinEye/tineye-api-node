@@ -21,7 +21,7 @@ Once installed, require the library to start using it:
 
 Once required, you are ready to start using it with node!
 
-::
+.. code:: javascript
 
     var api = new tineye('https://api.tineye.com/rest/', public_key, private_key)
 
