@@ -35,7 +35,7 @@ Searching
       console.log(data)
     })
 
-    img = fs.openSync('/Users/Mypath')
+    img = fs.readFileSync('/Users/Mypath')
     api.search_data(img, 0, 10, 'size', 'asc', function(data) {
       console.log(data)
     })
