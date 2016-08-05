@@ -1,269 +1,234 @@
-/*
- * test_api_request.js
+/* test_api.js
  *
- * Test TinEyeAPIRequest class.
+ * Test ApiRequest class.
  * 
- * Copyright (c) 2012 Idee Inc. All rights reserved worldwide.
- *
+ * Copyright (c) 2016 TinEye. All rights reserved worldwide.
  */
 
-var buster      = require('buster');
-var API_Request = require('../lib/api-request.js');
+var ApiRequest = require('../lib/api_request.js');
+var buster = require('buster');
 
 var assert = buster.assert;
 
-buster.testCase("TestAPI_Request", {
+buster.testCase("TestApiRequest", {
 
+  "Test generateNonce": {
+    /* Test ApiRequest.generateNonce(). */
 
-  "testgenerate_nonce": {
-  /* Test API_Request.generate_nonce(). */
-
-  	"Generate_Nonce_Test_01": {
-      setUp: function () {
-        this.request = new API_Request('http://api.tineye.com/', 'public_key', 'private_key')
+    "generateNonce test 01": {
+      setUp: function() {
+        this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-   	  "Generate_Nonce_Test_01a: Return 'RangeError'": function () { 
-	      assert.exception(function() {
-          this.request.generate_nonce(-1) 
-        }, 'RangeError')
-	    },
-      "Generate_Nonce_Test_01b: Return a 24 length nonce": function () { 
-        assert.equals(((this.request.generate_nonce(0)).length), 24)
-      },
-      "Generate_Nonce_Test_01c: Return 'RangeError'": function () { 
+      "Return 'RangeError'": function() { 
         assert.exception(function() {
-          this.request.generate_nonce(23);
+          this.request.generateNonce(-1);
         }, 'RangeError');
       },
-      "Generate_Nonce_Test_01d: Return 'RangeError'": function () { 
+      "Return a 24 length nonce": function() { 
+        assert.equals(((this.request.generateNonce(0)).length), 24);
+      },
+      "Return 'RangeError'": function() { 
         assert.exception(function() {
-          this.request.generate_nonce(256)
-        }, 'RangeError')
-      },
-      "Generate_Nonce_Test_01e: Return a 24 length nonce": function () { 
-        assert.equals(((this.request.generate_nonce(24)).length), 24)
-      },
-      "Generate_Nonce_Test_01f: Return a 255 length nonce": function () { 
-        assert.equals(((this.request.generate_nonce(255)).length), 255)
-      },
-      "Generate_Nonce_Test_01g: Return a 36 length nonce": function () { 
-        assert.equals(((this.request.generate_nonce(36)).length), 36)
-      },
-      "Generate_Nonce_Test_01h: Return 'RangeError'": function () { 
-        assert.exception(function() {
-          this.request.generate_nonce(256)
+          this.request.generateNonce(23);
         }, 'RangeError');
       },
-      "Generate_Nonce_Test_01i: Return 'RangeError'": function () { 
+      "Return 'RangeError'": function() { 
         assert.exception(function() {
-          this.request.generate_nonce("character")
-        }, 'RangeError')
+          this.request.generateNonce(256);
+        }, 'RangeError');
+      },
+      "Return a 24 length nonce": function() { 
+        assert.equals(((this.request.generateNonce(24)).length), 24);
+      },
+      "Return a 255 length nonce": function() { 
+        assert.equals(((this.request.generateNonce(255)).length), 255);
+      },
+      "Return a 36 length nonce": function() { 
+        assert.equals(((this.request.generateNonce(36)).length), 36);
+      },
+      "Return 'RangeError'": function() { 
+        assert.exception(function() {
+          this.request.generateNonce(256);
+        }, 'RangeError');
+      },
+      "Return 'RangeError'": function() { 
+        assert.exception(function() {
+          this.request.generateNonce("character");
+        }, 'RangeError');
       }
-	  },
+    },
 
-    "Generate_Nonce_Test_02":{
-      "Generate_Nonce_Test_02: Return 'false'": function () { 
-        this.nonce           = new API_Request().generate_nonce(36)
-        this.allowable_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTSUVWXYZ0123456789-_=.,*^"
-          assert.isFalse(this.nonce.indexOf('this.allowable_chars') === 1)
+    "generateNonce test 02":{
+      "Return 'false'": function() { 
+        this.nonce           = new ApiRequest().generateNonce(36);
+        this.allowableChars  = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRTSUVWXYZ0123456789-_=.,*^";
+          assert.isFalse(this.nonce.indexOf('this.allowableChars') === 1);
         }
       }    
     },
 
 
-  "test_hmac_signature": {
-  /*    
+  "Test HMAC signature functions": {
+    /*
+      Test APIRequest.generateGetHmacSignature(),
+      Test APIRequest.generatePostHmacSignature(), and
+      Test APIRequest.generateHmacSignature().
+    */
 
-    Test APIRequest.generate_get_hmac_signature(),
-    TestAPIRequest.generate_post_hmac_signature(), and
-    TestAPIRequest.generate_hmac_signature().
-
-  */
-
-    "Generate_hmac_signature":{
-      setUp: function () {
-        this.request = new API_Request('http://api.tineye.com/', 'public_key', 'private_key')
+    "Test generateHmacSignature":{
+      setUp: function() {
+        this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Generate_hmac_signature_a: Return 'true'": function () { 
-        var signature = this.request.generate_hmac_signature('')
-        assert.equals(signature, '9e53b30cd6c6eb31c276ade9a29dcf5da7fd0f62')  
+      "Return 'true'": function() { 
+        var signature = this.request.generateHmacSignature('');
+        assert.equals(signature, '9e53b30cd6c6eb31c276ade9a29dcf5da7fd0f62');
       },
-      "Generate_hmac_signature_b: Return 'true'": function () { 
-        var signature = this.request.generate_hmac_signature(' ')
-        assert.equals(signature, 'e84c818e22c0db649537f4015ee13efd34044366')
+      "Return 'true'": function() { 
+        var signature = this.request.generateHmacSignature(' ');
+        assert.equals(signature, 'e84c818e22c0db649537f4015ee13efd34044366');
       },
-      "Generate_hmac_signature_c: Return 'true'": function () { 
-        var signature = this.request.generate_hmac_signature('this is a message to convert')
-        assert.equals(signature, 'b373bc3be782f86d64421f0f3b1b394e9217f61d')
+      "Return 'true'": function() { 
+        var signature = this.request.generateHmacSignature('this is a message to convert');
+        assert.equals(signature, 'b373bc3be782f86d64421f0f3b1b394e9217f61d');
       },
-      "Generate_hmac_signature_d: Return 'true'": function () { 
-        var signature = this.request.generate_hmac_signature('this is another message to convert')
-        assert.equals(signature, 'fe0bdcae1763be1dd154c9141e03a956c25a068a')
+      "Return 'true'": function() { 
+        var signature = this.request.generateHmacSignature('this is another message to convert');
+        assert.equals(signature, 'fe0bdcae1763be1dd154c9141e03a956c25a068a');
       }
     },
 
-    "Generate_GET_hmac_signature":{
-      setUp: function () {
-        this.nonce   = 'a_nonce'
-        this.date    = 1347910390
-        this.request = new API_Request('http://api.tineye.com/', 'public_key', 'private_key')
+    "Test generateGetHmacSignature": {
+      setUp: function() {
+        this.nonce   = 'a_nonce';
+        this.date    = 1347910390;
+        this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Generate_GET_hmac_signature_A: Return 'true'": function () { 
-        var signature = this.request.generate_get_hmac_signature( 'image_count'
-                                                                 , this.nonce
-                                                                 , this.date
-                                                                 )
-        assert.equals(signature, '75acee6ab58785fa04448df232e6f171cd4db819')
+      "Return 'true'": function() { 
+        var signature = this.request.generateGetHmacSignature('image_count', this.nonce, this.date);
+        assert.equals(signature, 'c521bfadb124829e85174b7a247e16617238e987');
       },
-      "Generate_GET_hmac_signature_B: Return 'true'": function () { 
-        var signature = this.request.generate_get_hmac_signature( 'remaining_searches'
-                                                                 , this.nonce
-                                                                 , this.date
-                                                                 , request_params = {'param_1' : 'value'}
-                                                                 )
-        assert.equals(signature, '7e6f8ff5c24d10e03d0c962f3d4a7e6df1ade352')
+      "Return 'true'": function() { 
+        var signature = this.request.generateGetHmacSignature(
+          'remaining_searches', this.nonce, this.date, requestParams = {'param_1' : 'value'});
+        assert.equals(signature, '0d3b1bd53e75df15181bb6022fb642a008dc672b');
       }
     },
 
-
-    "Generate_POST_hmac_signature":{
-      setUp: function () {
-        this.nonce    = 'a_nonce'
-        this.date     = 1347910390
-        this.boundary = "--boundary!"
-        this.request  = new API_Request('http://api.tineye.com/', 'public_key', 'private_key')
+    "Test generatePostHmacSignature": {
+      setUp: function() {
+        this.nonce    = 'a_nonce';
+        this.date     = 1347910390;
+        this.boundary = "--boundary!";
+        this.request  = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Generate_POST_hmac_signature_A: Return 'true'": function () { 
-        var signature = this.request.generate_post_hmac_signature( 'search'
-                                                                  , this.boundary
-                                                                  , this.nonce
-                                                                  , this.date
-                                                                  , filename = 'file'
-                                                                  )
-        assert.equals(signature, 'caeae30f197efeca6766e546168bc942597dd7a5')
+      "Return 'true'": function() { 
+        var signature = this.request.generatePostHmacSignature(
+          'search', this.boundary, this.nonce, this.date, filename = 'file');
+        assert.equals(signature, 'b4555c92442f7567561ac869403dcf1b58f30cf9');
       },
-      "Generate_POST_hmac_signature_B: Return 'true'": function () { 
-        var signature = this.request.generate_post_hmac_signature( 'search'
-                                                                  , this.boundary
-                                                                  , this.nonce
-                                                                  , this.date
-                                                                  , filename='file'
-                                                                  , request_params = { 'param_1' : 'value' }
-                                                                  )
-        assert.equals(signature, '0c5f2091631d4ad76207565b0cf9e9daf8e68465') 
+      "Return 'true'": function() { 
+        var signature = this.request.generatePostHmacSignature(
+          'search', this.boundary, this.nonce, this.date,
+          filename='file', requestParams = { 'param_1' : 'value' });
+        assert.equals(signature, '4fdc93cae93064a515ee88453a500587bac1b7a5') ;
       }
     },
   },
 
-  "testsort_params": {
-  /* Test APIRequest.sort_params().  */
+  "Test sortParams": {
+    /* Test APIRequest.sortParams().  */
 
-    "Sort_Params":{
-      setUp: function () {
-        this.request = new API_Request('http://api.tineye.com/', 'public_key', 'private_key')
+    "sortParams":{
+      setUp: function() {
+        this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Sort_params_A:": function() {
-        var request_params = {}
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, '')
+      "a:": function() {
+        var requestParams = {};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, '');
       },
-      "Sort_params_B": function() {
-        var request_params = {'a_param': 'value_1'}
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'a_param=value_1')
+      "b": function() {
+        var requestParams = {'a_param': 'value_1'};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'a_param=value_1');
       },
-      "Sort_params_C": function() {
-        var request_params = { 'a_param' : 'value_1'
-                             , 'b_param' : 'value_2'
-                             }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'a_param=value_1&b_param=value_2')
+      "c": function() {
+        var requestParams = {'a_param': 'value_1', 'b_param': 'value_2'};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'a_param=value_1&b_param=value_2');
       },
-      "Sort_params_D": function() {
-        var request_params = { 'param_1' : 'value_1'
-                             , 'a_param' : 'value_2'
-                             , 'b_param' : 'value_3'
-                             }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'a_param=value_2&b_param=value_3&param_1=value_1')
+      "d": function() {
+        var requestParams = {'param_1': 'value_1', 'a_param': 'value_2', 'b_param': 'value_3'};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'a_param=value_2&b_param=value_3&param_1=value_1');
       },
-      "Sort_params_E": function() {
-        var request_params = { 'api_key' : 'a_key'
-                             , 'param_1' : 'value_1'
-                             , 'a_param' : 'value_2'
-                             , 'b_param' : 'value_3'
-                             }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'a_param=value_2&b_param=value_3&param_1=value_1')
+      "e": function() {
+        var requestParams = {'api_key' : 'a_key', 'param_1' : 'value_1',
+          'a_param' : 'value_2', 'b_param' : 'value_3'};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'a_param=value_2&b_param=value_3&param_1=value_1');
       },
-      "Sort_params_F": function() {
-        var request_params = { 'api_key' : 'a_key'
-                             , 'param_1' : 'value_1'
-                             , 'api_sig' : 'a_sig'
-                             , 'a_param' : 'value_2'
-                             }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'a_param=value_2&param_1=value_1')
+      "f": function() {
+        var requestParams = {'api_key': 'a_key', 'param_1': 'value_1',
+          'api_sig': 'a_sig', 'a_param' : 'value_2'};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'a_param=value_2&param_1=value_1');
       },
-      "Sort_params_G": function() {
-        var request_params = { 'api_key' : 'a_key'
-                             , 'date'    : 'date'
-                             , 'api_sig' : 'a_sig'
-                             , 'nonce'   : 'nonce'
-                             }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, '')
+      "g": function() {
+        var requestParams = {'api_key': 'a_key', 'date': 'date',
+          'api_sig': 'a_sig', 'nonce': 'nonce'};
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, '');
       },
-      "Sort_params_H": function() {
-        var request_params = { 'image_url' : 'valu$_1' }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'image_url=valu%24_1')
+      "h": function() {
+        var requestParams = { 'image_url' : 'valu$_1' };
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'image_url=valu%24_1');
       },
-      "Sort_params_I": function() {
-        var request_params = { 'image_url' : 'CAPS!??!?!' }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'image_url=caps%21%3f%3f%21%3f%21')
+      "i": function() {
+        var requestParams = { 'image_url' : 'CAPS!??!?!' };
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'image_url=caps%21%3f%3f%21%3f%21');
       },
-      "Sort_params_J": function() {
-        var request_params = { 'image_url' : 'CAPS%21%3f%3f%21%3f%21' }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'image_url=caps%21%3f%3f%21%3f%21')
+      "j": function() {
+        var requestParams = { 'image_url' : 'CAPS%21%3f%3f%21%3f%21' };
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'image_url=caps%21%3f%3f%21%3f%21');
       },
-      "Sort_params_K": function() {
-        var request_params = { 'Image_Url' : 'CAPS%21%3f%3f%21%3f%21' }
-        var sorted_params  = this.request.sort_params(request_params)
-        assert.equals(sorted_params, 'Image_Url=caps%21%3f%3f%21%3f%21')
+      "k": function() {
+        var requestParams = { 'Image_Url' : 'CAPS%21%3f%3f%21%3f%21' };
+        var sortedParams  = this.request.sortParams(requestParams);
+        assert.equals(sortedParams, 'Image_Url=caps%21%3f%3f%21%3f%21');
       }
     }
   },
 
-  "testrequest_url": {   
-  /* Test APIRequest.request_url(). */
+  "Test requestUrl": {   
+    /* Test ApiRequest.requestUrl(). */
 
-    "Sort_Params":{
-      setUp: function () {
-        this.request = new API_Request('http://api.tineye.com/', 'public_key', 'private_key')
-        this.nonce   = 'a_nonce'
-        this.date    = 1345821763
+    "requestUrl":{
+      setUp: function() {
+        this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
+        this.nonce   = 'a_nonce';
+        this.date    = 1345821763;
       },
-      "Request_URL_A: Return ": function() {
-        url = this.request.request_url('search', this.nonce, this.date, 'api_sig', { 'a_param': 'value_1' } );
-        assert.equals(url, 'http://api.tineye.com/search/?api_key=public_key&date=1345821763&nonce=a_nonce&api_sig=api_sig&a_param=value_1')
+      "One parameter": function() {
+        url = this.request.requestUrl('search', this.nonce, this.date,
+          'api_sig', {'a_param': 'value_1'});
+        assert.equals(url,
+          'https://api.tineye.com/search/?api_key=public_key&date=1345821763&nonce=a_nonce&api_sig=api_sig&a_param=value_1');
       },
-      "Request_URL_B: Return ": function() {
-        url = this.request.request_url('search', this.nonce, this.date, 'api_sig', { 'param_1' : 'value_1'
-                                                                                    , 'a_param' : 'value_2'
-                                                                                    , 'b_param' : 'value_3'
-                                                                                    }
-                                        )
-        assert.equals(url, 'http://api.tineye.com/search/?api_key=public_key&date=1345821763&nonce=a_nonce&api_sig=api_sig&a_param=value_2&b_param=value_3&param_1=value_1');
+      "Multiple parameter": function() {
+        url = this.request.requestUrl('search', this.nonce, this.date, 'api_sig',
+          {'param_1' : 'value_1', 'a_param' : 'value_2', 'b_param' : 'value_3'});
+        assert.equals(url,
+          'https://api.tineye.com/search/?api_key=public_key&date=1345821763&nonce=a_nonce&api_sig=api_sig&a_param=value_2&b_param=value_3&param_1=value_1');
       },
-      "Request_URL_C: Return ": function() {
-        url = this.request.request_url('search', this.nonce, this.date, 'api_sig', { 'image_url' : 'CAPS?!!?' } ) 
-        assert.equals(url, 'http://api.tineye.com/search/?api_key=public_key&date=1345821763&nonce=a_nonce&api_sig=api_sig&image_url=caps%3f%21%21%3f')
+      "With image_url": function() {
+        url = this.request.requestUrl('search', this.nonce, this.date, 'api_sig', {'image_url' : 'CAPS?!!?'}) ;
+        assert.equals(url,
+          'https://api.tineye.com/search/?api_key=public_key&date=1345821763&nonce=a_nonce&api_sig=api_sig&image_url=CAPS%3F%21%21%3F');
       }
     }
   }
 });
-
-//32 tests.

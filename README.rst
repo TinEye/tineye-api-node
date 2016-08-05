@@ -17,49 +17,95 @@ Once installed, require the library to start using it:
 
 ::
 
-    var tineye = require('tineye-api')
+    var TinEye = require('tineye-api')
 
-Once required, you are ready to start using it with node!
+Once required, you are ready to start using it with Node!
 
-::
-
-    var api = new tineye('https://api.tineye.com/rest/', public_key, private_key)
-
-Searching
----------
+If the callback argument is omitted, the method will return
+a **promise** instead.
 
 ::
 
-    url = 'http://tineye.com/images/meloncat.jpg'
-    api.search_url(url, 0, 10, 'score', 'desc', function(data) {
-      console.log(data)
-    })
+    var api = new TinEye('https://api.tineye.com/rest/', public_key, private_key)
 
-    img = fs.readFileSync('/Users/Mypath')
-    api.search_data(img, 0, 10, 'size', 'asc', function(data) {
-      console.log(data)
-    })
+Searching using an image URL
+----------------------------
+
+::
+
+    var url = 'https://tineye.com/images/meloncat.jpg';
+    var params = {
+      'offset': 0,
+      'limit': 10,
+      'sort': 'score',
+      'order': 'desc'
+    };
+    api.searchUrl(url, params)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+Searching using image data
+--------------------------
+
+::
+
+    var img = fs.readFileSync('/Users/Mypath/image.jpg');
+    var params = {
+      'offset': 0,
+      'limit': 10,
+      'sort': 'size',
+      'order': 'asc'
+    };
+    api.searchData(img, params)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
 Remaining Searches
 ------------------
 
 ::
 
-    api.remaining_searches(function(data) {
-      console.log(data)
-    })
+    api.remainingSearches()
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
 Number of Indexed Images
 ------------------------
 
 ::
 
-    api.image_count(function(data) {
-      console.log(data)
-    })
+    api.imageCount()
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
 Release History
 ---------------
 
-* 0.1.0 Initial release
+1.0.0
+=====
 
+* Adding promises
+* Better error handling
+* Switched method names to camelCasing
+* `searchUrl` and `searchData` now take an option array
+
+0.1.0
+=====
+
+* Initial release
