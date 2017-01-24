@@ -1,7 +1,7 @@
 tineye-api
 ==========
 
-TinEye Commercial API Node.js library
+TinEye API Node.js library
 
 Installation
 ------------
@@ -26,7 +26,7 @@ a **promise** instead.
 
 ::
 
-    var api = new TinEye('https://api.tineye.com/rest/', public_key, private_key)
+    var api = new TinEye('https://api.tineye.com/rest/', public_key, private_key);
 
 Searching using an image URL
 ----------------------------
@@ -96,6 +96,12 @@ Number of Indexed Images
 
 Release History
 ---------------
+
+1.0.1
+=====
+
+* Cleaning up some code and comments
+* Some error handling fixes
 
 1.0.0
 =====

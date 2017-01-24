@@ -1,7 +1,7 @@
 {
   "name": "tineye-api",
-  "version": "1.0.0",
-  "description": "TinEye Commercial API node.js library",
+  "version": "1.0.1",
+  "description": "TinEye API node.js library",
   "main": "lib/tineye_api_request.js",
   "scripts": {
     "test": "cd test && node test_api_request.js && node test_tineye_api_request.js"
