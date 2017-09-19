@@ -95,7 +95,8 @@ buster.testCase("TestTinEyeApiRequest", {
       "remainingSearches:": function(done) {
         this.api.remainingSearches(function(err, data) {
           assert.equals(data.code, 200);
-          assert.equals(data.results.remaining_searches, 5000);
+          assert.equals(data.results.bundles[0].remaining_searches, 5000);
+          assert.equals(data.results.total_remaining_searches, 5000);
           done();
         });
       }
@@ -110,7 +111,8 @@ buster.testCase("TestTinEyeApiRequest", {
       "remainingSearches": function(done) {
         this.api.remainingSearches().then(function(data) {
           assert.equals(data.code, 200);
-          assert.equals(data.results.remaining_searches, 5000);
+          assert.equals(data.results.bundles[0].remaining_searches, 5000);
+          assert.equals(data.results.total_remaining_searches, 5000);
           done();
         });
       }

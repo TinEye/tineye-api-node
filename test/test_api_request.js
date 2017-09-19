@@ -79,21 +79,21 @@ buster.testCase("TestApiRequest", {
       setUp: function() {
         this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Return 'true'": function() { 
+      "1 - Return 'true'": function() { 
         var signature = this.request.generateHmacSignature('');
-        assert.equals(signature, '9e53b30cd6c6eb31c276ade9a29dcf5da7fd0f62');
+        assert.equals(signature, '82d5208ddf2b2096c17f879c739a5f440e87155f3308b9cf44a91d9104b10b8c');
       },
-      "Return 'true'": function() { 
+      "2 - Return 'true'": function() { 
         var signature = this.request.generateHmacSignature(' ');
-        assert.equals(signature, 'e84c818e22c0db649537f4015ee13efd34044366');
+        assert.equals(signature, '1737ed554d845cb8428f75572bfed17e95f7fc06264f82f4c2b0cb7d7a9a2650');
       },
-      "Return 'true'": function() { 
+      "3 - Return 'true'": function() { 
         var signature = this.request.generateHmacSignature('this is a message to convert');
-        assert.equals(signature, 'b373bc3be782f86d64421f0f3b1b394e9217f61d');
+        assert.equals(signature, '1a7ca3031f3834b857c933b4349cd988aeb19792e88c504aa58234079593b5be');
       },
-      "Return 'true'": function() { 
+      "4 - Return 'true'": function() { 
         var signature = this.request.generateHmacSignature('this is another message to convert');
-        assert.equals(signature, 'fe0bdcae1763be1dd154c9141e03a956c25a068a');
+        assert.equals(signature, 'c8535a6742e948498cc819f1e677967de30d7dda98ca40f6be5640d8df1e5da1');
       }
     },
 
@@ -103,14 +103,14 @@ buster.testCase("TestApiRequest", {
         this.date    = 1347910390;
         this.request = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Return 'true'": function() { 
+      "1 - Return 'true'": function() { 
         var signature = this.request.generateGetHmacSignature('image_count', this.nonce, this.date);
-        assert.equals(signature, 'c521bfadb124829e85174b7a247e16617238e987');
+        assert.equals(signature, '778bdd63a5474573807bf1b12f75525334c0ea2fe1adace77861c82eb3580522');
       },
-      "Return 'true'": function() { 
+      "2 - Return 'true'": function() { 
         var signature = this.request.generateGetHmacSignature(
           'remaining_searches', this.nonce, this.date, requestParams = {'param_1' : 'value'});
-        assert.equals(signature, '0d3b1bd53e75df15181bb6022fb642a008dc672b');
+        assert.equals(signature, '5ab173a4c5237f4819722420000c2febaa18179eb58009899139fec9e32c2246');
       }
     },
 
@@ -121,16 +121,16 @@ buster.testCase("TestApiRequest", {
         this.boundary = "--boundary!";
         this.request  = new ApiRequest('https://api.tineye.com/', 'public_key', 'private_key');
       },
-      "Return 'true'": function() { 
+      "1 - Return 'true'": function() { 
         var signature = this.request.generatePostHmacSignature(
           'search', this.boundary, this.nonce, this.date, filename = 'file');
-        assert.equals(signature, 'b4555c92442f7567561ac869403dcf1b58f30cf9');
+        assert.equals(signature, '52428961afca202860f721918ce026dfbff1afc323e9e85297f5ee486de715a0');
       },
-      "Return 'true'": function() { 
+      "2 - Return 'true'": function() { 
         var signature = this.request.generatePostHmacSignature(
           'search', this.boundary, this.nonce, this.date,
           filename='file', requestParams = { 'param_1' : 'value' });
-        assert.equals(signature, '4fdc93cae93064a515ee88453a500587bac1b7a5') ;
+        assert.equals(signature, '3cb685ac24d3976af220d07627f431b698653aa042ea984377053a1a8da0691e') ;
       }
     },
   },
