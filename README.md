@@ -18,8 +18,7 @@ var TinEye = require('tineye-api')
 
 Once required, you are ready to start using it with Node!
 
-If the callback argument is omitted, the method will return
-a **promise** instead.
+If the callback argument is omitted, the method will return a **promise** instead.
 
 ```
 var api = new TinEye('https://api.tineye.com/rest/', public_key, private_key);
@@ -88,6 +87,11 @@ api.imageCount()
 ```
 
 ## Release History
+
+### 1.0.2
+
+* Switched hashing algorithm from SHA1 to SHA256
+* Switched README from reStructuredText to Markdown
 
 ### 1.0.1
 
