@@ -7,6 +7,7 @@ See <https://api.tineye.com/> for more information.
 # Contents
 - [ Installation ](#installation)
 - [ Getting started ](#getting-started)
+- [ Methods ](#methods)
     - [ Search using an image URL ](#search-using-an-image-url)
     - [ Search using image data ](#search-using-image-data)
     - [ Get remaining searches ](#get-remaining-searches)
@@ -43,6 +44,8 @@ Once you have an `api` object, you can start searching. You can submit an image 
 [image URL](#search-using-an-image-url) or by [submitting image data](#search-using-image-data)
 by uploading an image file. You can also [check the number of remaining searches](#get-remaining-searches)
 in your account or [check the number of images in the TinEye index](#get-number-of-indexed-images).
+
+# Methods
 
 ## Search using an image URL
 
