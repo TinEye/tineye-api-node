@@ -1,7 +1,7 @@
 # tineye-api
 
 **tineye-api** is the official Node.js library for the TinEye API. The TinEye API
-is TinEye's paid reverse image search search solution for professional, commercial or high-volume users.
+is TinEye's paid reverse image search solution for professional, commercial or high-volume users.
 See <https://api.tineye.com/> for more information.
 
 # Contents
