@@ -32,7 +32,7 @@ var TinEye = require('tineye-api')
 Now that you've required the library, you can use it to create an instance of the API object.
 
 ```
-var api = new TinEye('https://api.tineye.com/rest/', public_key, private_key);
+var api = new TinEye('https://api.tineye.com/rest/', <public_key>, <private_key>);
 ```
 
 Be sure to populate `public_key` and `private_key` with your own keys. You can test your code
