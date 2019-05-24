@@ -3,11 +3,16 @@
   "version": "1.0.2",
   "description": "TinEye API node.js library",
   "keywords": [
-    "TinEye"
+    "TinEye",
+    "TinEye API",
+    "Search by Image",
+    "Reverse Image Search",
+    "Find Duplicates",
+    "Computer Vision"
   ],
   "main": "lib/tineye_api_request.js",
   "scripts": {
-    "test": "cd test && node test_api_request.js && node test_tineye_api_request.js"
+    "test": "jest  --env=node"
   },
   "repository": {
     "type": "git",
@@ -16,12 +21,11 @@
   "author": "TinEye <support@tineye.com> (https://tineye.com/)",
   "license": "MIT",
   "dependencies": {
-    "bluebird": "~3.5.0",
-    "form-data": "~2.3.1",
-    "request": "~2.81.0"
+    "axios": "^0.18.0",
+    "form-data": "~2.3.1"
   },
   "devDependencies": {
-    "buster": "^0.7.18"
+    "jest": "^24.8.0"
   },
   "bugs": {
     "url": "https://github.com/TinEye/tineye_api_node/issues"
