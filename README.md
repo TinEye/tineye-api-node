@@ -110,6 +110,11 @@ api.imageCount()
 ```
 
 # Release history
+## 1.1.0
+
+* Changed tests from BusterJS to Jest
+* Removed BlueBird and switched to native promises
+* Switch Requests for Axios to make GET requests
 
 ## 1.0.2
 
