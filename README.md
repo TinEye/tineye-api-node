@@ -37,7 +37,7 @@ var api = new TinEye('https://api.tineye.com/rest/', <public_key>, <private_key>
 ```
 
 Be sure to populate `public_key` and `private_key` with your own keys. You can test your code
-with our [API sandbox keys](https://services.tineye.com/developers/tineyeapi/sandbox.html), but
+with our [API sandbox keys](https://services.tineye.com/developers/tineyeapi/sandbox), but
 you won't get real search results until you start using your real keys.
 
 Once you have an `api` object, you can start searching. You can submit an image using either an
@@ -110,6 +110,16 @@ api.imageCount()
 ```
 
 # Release history
+
+## 1.1.2
+
+* Updated Axios 0.19.0 -> 0.19.2
+* Updated form-data 2.5.0 -> 3.0.0
+* Updated jest 24.8.0 -> 25.1.0
+* Updated Sandbox key link in Readme
+* Removed the tests from being packaged 
+* Removed unneeded `git` folder from `.gitignore`
+
 ## 1.1.0
 
 * Changed tests from BusterJS to Jest
