@@ -5,17 +5,18 @@ is TinEye's paid reverse image search solution for professional, commercial or h
 See <https://api.tineye.com/> for more information.
 
 # Contents
+
 - [ Installation ](#installation)
 - [ Getting started ](#getting-started)
 - [ Methods ](#methods)
-    - [ Search using an image URL ](#search-using-an-image-url)
-    - [ Search using image data ](#search-using-image-data)
-    - [ Get remaining searches ](#get-remaining-searches)
-    - [ Get number of indexed images ](#get-number-of-indexed-images)
+  - [ Search using an image URL ](#search-using-an-image-url)
+  - [ Search using image data ](#search-using-image-data)
+  - [ Get remaining searches ](#get-remaining-searches)
+  - [ Get number of indexed images ](#get-number-of-indexed-images)
 - [ Release history ](#release-history)
 
-
 # Installation
+
 Install the latest version of the library using npm:
 
 ```shell
@@ -50,18 +51,19 @@ in your account or [check the number of images in the TinEye index](#get-number-
 ## Search using an image URL
 
 ```javascript
-var url = 'https://tineye.com/images/meloncat.jpg';
+var url = "https://tineye.com/images/meloncat.jpg";
 var params = {
-  'offset': 0,
-  'limit': 10,
-  'sort': 'score',
-  'order': 'desc'
+  offset: 0,
+  limit: 10,
+  sort: "score",
+  order: "desc",
 };
-api.searchUrl(url, params)
-  .then(function(response) {
+api
+  .searchUrl(url, params)
+  .then(function (response) {
     console.log(response);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log(error);
   });
 ```
@@ -69,18 +71,19 @@ api.searchUrl(url, params)
 ## Search using image data
 
 ```javascript
-var img = fs.readFileSync('/Users/Mypath/image.jpg');
+var img = fs.readFileSync("/Users/Mypath/image.jpg");
 var params = {
-  'offset': 0,
-  'limit': 10,
-  'sort': 'size',
-  'order': 'asc'
+  offset: 0,
+  limit: 10,
+  sort: "size",
+  order: "asc",
 };
-api.searchData(img, params)
-  .then(function(response) {
+api
+  .searchData(img, params)
+  .then(function (response) {
     console.log(response);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log(error);
   });
 ```
@@ -88,11 +91,12 @@ api.searchData(img, params)
 ## Get remaining searches
 
 ```javascript
-api.remainingSearches()
-  .then(function(response) {
+api
+  .remainingSearches()
+  .then(function (response) {
     console.log(response);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log(error);
   });
 ```
@@ -100,49 +104,54 @@ api.remainingSearches()
 ## Get number of indexed images
 
 ```javascript
-api.imageCount()
-  .then(function(response) {
+api
+  .imageCount()
+  .then(function (response) {
     console.log(response);
   })
-  .catch(function(error) {
+  .catch(function (error) {
     console.log(error);
   });
 ```
 
 # Release history
 
+## 1.1.3
+
+- Updated jest 25.1.0 -> 26.1.0
+
 ## 1.1.2
 
-* Updated Axios 0.19.0 -> 0.19.2
-* Updated form-data 2.5.0 -> 3.0.0
-* Updated jest 24.8.0 -> 25.1.0
-* Updated Sandbox key link in Readme
-* Removed the tests from being packaged 
-* Removed unneeded `git` folder from `.gitignore`
+- Updated Axios 0.19.0 -> 0.19.2
+- Updated form-data 2.5.0 -> 3.0.0
+- Updated jest 24.8.0 -> 25.1.0
+- Updated Sandbox key link in Readme
+- Removed the tests from being packaged
+- Removed unneeded `git` folder from `.gitignore`
 
 ## 1.1.0
 
-* Changed tests from BusterJS to Jest
-* Removed BlueBird and switched to native promises
-* Switch library for making GET requests from Requests to Axios
+- Changed tests from BusterJS to Jest
+- Removed BlueBird and switched to native promises
+- Switch library for making GET requests from Requests to Axios
 
 ## 1.0.2
 
-* Switched hashing algorithm from SHA1 to SHA256
-* Switched README from reStructuredText to Markdown
+- Switched hashing algorithm from SHA1 to SHA256
+- Switched README from reStructuredText to Markdown
 
 ## 1.0.1
 
-* Cleaning up some code and comments
-* Some error handling fixes
+- Cleaning up some code and comments
+- Some error handling fixes
 
 ## 1.0.0
 
-* Adding promises
-* Better error handling
-* Switched method names to camelCasing
-* `searchUrl` and `searchData` now take an option array
+- Adding promises
+- Better error handling
+- Switched method names to camelCasing
+- `searchUrl` and `searchData` now take an option array
 
 ## 0.1.0
 
-* Initial release
+- Initial release
