@@ -116,6 +116,11 @@ api
 
 # Release history
 
+## 1.1.4
+
+- Updated Axios 0.19.0 -> 0.21.1
+- Fixed a bug when performing a search with no options
+
 ## 1.1.3
 
 - Updated jest 25.1.0 -> 26.1.0
