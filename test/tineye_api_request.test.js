@@ -44,6 +44,15 @@ describe("TestTinEyeApiRequest test", () => {
     });
   });
 
+  test(`searchUrl promise no options`, done => {
+    var url = "http://tineye.com/images/meloncat.jpg";
+    tineye_api.searchUrl(url).then(function(data) {
+      expect(data.code).toBe(200);
+      expect(data.results.matches.length).toBe(10);
+      done();
+    });
+  });
+
   test(`searchData callback`, done => {
     var img = fs.readFileSync("test/melon_cat.jpg");
     var options = { limit: 10 };
@@ -58,6 +67,15 @@ describe("TestTinEyeApiRequest test", () => {
     var img = fs.readFileSync("test/melon_cat.jpg");
     var options = { limit: 10 };
     tineye_api.searchData(img, options).then(function(data) {
+      expect(data.code).toBe(200);
+      expect(data.results.matches.length).toBe(10);
+      done();
+    });
+  });
+
+  test(`searchData promise no options`, done => {
+    var img = fs.readFileSync("test/melon_cat.jpg");
+    tineye_api.searchData(img).then(function(data) {
       expect(data.code).toBe(200);
       expect(data.results.matches.length).toBe(10);
       done();
