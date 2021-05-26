@@ -203,14 +203,14 @@ describe("Test sortParams function", () => {
   test(`Encode already encoded image_url`, function() {
     var requestParams = { image_url: "CAPS%21%3f%3f%21%3f%21" };
     expect(tineye_client.sortParams(requestParams)).toBe(
-      "image_url=caps%21%3f%3f%21%3f%21"
+      "image_url=caps%2521%253f%253f%2521%253f%2521"
     );
   });
 
   test(`Maintain Case in param`, function() {
     var requestParams = { Image_Url: "CAPS%21%3f%3f%21%3f%21" };
     expect(tineye_client.sortParams(requestParams)).toBe(
-      "Image_Url=caps%21%3f%3f%21%3f%21"
+      "Image_Url=caps%2521%253f%253f%2521%253f%2521"
     );
   });
 });
