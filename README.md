@@ -116,6 +116,12 @@ api
 
 # Release history
 
+## 1.1.5
+
+- Updated form-data 3.0.0 -> 4.0.0
+- Updated jest 26.1.0 -> 27.0.1
+- Fixed an encoding bug when searching with URLs
+
 ## 1.1.4
 
 - Updated Axios 0.19.0 -> 0.21.1
