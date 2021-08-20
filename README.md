@@ -34,10 +34,10 @@ var TinEye = require('tineye-api')
 Now that you've required the library, you can use it to create an instance of the API object.
 
 ```
-var api = new TinEye('https://api.tineye.com/rest/', <public_key>, <private_key>);
+var api = new TinEye('https://api.tineye.com/rest/', 'yourApiKey');
 ```
 
-Be sure to populate `public_key` and `private_key` with your own keys. You can test your code
+Be sure to populate `api_key` with your own key. You can test your code
 with our [API sandbox keys](https://services.tineye.com/developers/tineyeapi/sandbox), but
 you won't get real search results until you start using your real keys.
 
@@ -115,6 +115,11 @@ api
 ```
 
 # Release history
+
+## 2.0.0
+
+- Swapping HMAC-SHA256 authentication with header key
+- Updated jest 27.0.1 -> 27.0.6
 
 ## 1.1.5
 
