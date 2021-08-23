@@ -54,7 +54,7 @@ var api = new TinEye("https://api.tineye.com/rest/", publicKey, privateKey);
 After installation, `require` the library to start using it:
 
 ```javascript
-var TinEye = require("tineye-api")
+var TinEye = require("tineye-api");
 ```
 
 Now that you've required the library, you can use it to create an instance of the API object.
