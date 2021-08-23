@@ -7,6 +7,7 @@ See <https://api.tineye.com/> for more information.
 # Contents
 
 - [ Installation ](#installation)
+- [ Migrating from previous versions ](#migrating-from-previous-versions)
 - [ Getting started ](#getting-started)
 - [ Methods ](#methods)
   - [ Search using an image URL ](#search-using-an-image-url)
@@ -23,18 +24,43 @@ Install the latest version of the library using npm:
 $ npm install tineye-api
 ```
 
+# Migrating from previous versions
+
+If you were using any version of the TinEye API library before `2.0.0`, you will need
+to make minor changes to your code.
+
+The API object is now instantiated using a single key, `api_key`. The value
+of this key is the same as your previous `private_key`. The public key is no 
+longer used.
+
+#### New ✅ 
+```javascript
+// Sandbox key
+// Note that this is the same value as the old private_key
+var apiKey = "6mm60lsCNIB,FwOWjJqA80QZHh9BMwc-ber4u=t^";
+var api = new TinEye("https://api.tineye.com/rest/", apiKey);
+```
+
+#### Old ❌
+```javascript
+// Sandbox keys
+var publicKey = "LCkn,2K7osVwkX95K4Oy";
+var privateKey = "6mm60lsCNIB,FwOWjJqA80QZHh9BMwc-ber4u=t^";
+var api = new TinEye("https://api.tineye.com/rest/", publicKey, privateKey);
+```
+
 # Getting started
 
 After installation, `require` the library to start using it:
 
-```
-var TinEye = require('tineye-api')
+```javascript
+var TinEye = require("tineye-api")
 ```
 
 Now that you've required the library, you can use it to create an instance of the API object.
 
-```
-var api = new TinEye('https://api.tineye.com/rest/', 'yourApiKey');
+```javascript
+var api = new TinEye("https://api.tineye.com/rest/", "yourApiKey");
 ```
 
 Be sure to populate `api_key` with your own key. You can test your code
