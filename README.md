@@ -144,6 +144,17 @@ api
 
 # Release history
 
+## 2.0.4
+  - Updated axios to 1.2.2
+  - Updated Jest to 29.3.1
+  - Added prettier to dev deps
+
+## 2.0.3
+  - No need to import URLSearchParams from url module as it is now exposed as global.
+  - Updated axios from 0.25.0 -> 0.26.13
+  - Updated jest from 27.5.0 -> 27.5.1
+
+
 ## 2.0.0
 
 - Swapping HMAC-SHA256 authentication with header key
