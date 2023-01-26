@@ -1,6 +1,6 @@
 {
   "name": "tineye-api",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "TinEye API node.js library",
   "keywords": [
     "TinEye",
@@ -21,11 +21,12 @@
   "author": "TinEye <support@tineye.com> (https://tineye.com/)",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^1.2.2",
     "form-data": "4.0.0"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^29.3.1",
+    "prettier": "2.8.2"
   },
   "bugs": {
     "url": "https://github.com/TinEye/tineye_api_node/issues"

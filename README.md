@@ -30,10 +30,11 @@ If you were using any version of the TinEye API library before `2.0.0`, you will
 to make minor changes to your code.
 
 The API object is now instantiated using a single key, `api_key`. The value
-of this key is the same as your previous `private_key`. The public key is no 
+of this key is the same as your previous `private_key`. The public key is no
 longer used.
 
-#### New ✅ 
+#### New ✅
+
 ```javascript
 // Sandbox key
 // Note that this is the same value as the old private_key
@@ -42,6 +43,7 @@ var api = new TinEye("https://api.tineye.com/rest/", apiKey);
 ```
 
 #### Old ❌
+
 ```javascript
 // Sandbox keys
 var publicKey = "LCkn,2K7osVwkX95K4Oy";
@@ -141,6 +143,17 @@ api
 ```
 
 # Release history
+
+## 2.0.4
+  - Updated axios to 1.2.2
+  - Updated Jest to 29.3.1
+  - Added prettier to dev deps
+
+## 2.0.3
+  - No need to import URLSearchParams from url module as it is now exposed as global.
+  - Updated axios from 0.25.0 -> 0.26.13
+  - Updated jest from 27.5.0 -> 27.5.1
+
 
 ## 2.0.0
 
